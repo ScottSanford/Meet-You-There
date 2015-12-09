@@ -1,0 +1,450 @@
+map {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.scroll {
+  height: 100%;
+}
+
+
+@font-face {
+	font-family:'SF-UI-Display-Regular';
+	src:url('../fonts/SF-UI-Display-Regular.otf');
+}
+
+@font-face {
+	font-family:'SF-UI-Display-Semibold';
+	src:url('../fonts/SF-UI-Display-Semibold.otf');
+}
+
+@font-face {
+	font-family:'SF-UI-Display-Light';
+	src:url('../fonts/SF-UI-Display-Light.otf');
+}
+
+body {
+	font-family: 'SF-UI-Display-Regular';
+}
+
+ng:cloak], 
+[ng-cloak], 
+[data-ng-cloak], 
+[x-ng-cloak], 
+.ng-cloak, 
+.x-ng-cloak {
+    display: none !important;
+}
+
+.ng-hide-add, .ng-hide-remove {
+    display: none !important;
+}
+
+.item-divider {
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	background-color:#fff;
+	font-family: 'SF-UI-Display-Light';
+}
+
+.bar .title {
+	font-size:17pt;
+}
+
+a:active, a:hover {
+	text-decoration: none;
+	color:#10C49D;
+}
+
+
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active {
+	color:#10C49D;
+	text-decoration: none;
+}
+
+
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+    color: #0c9577;
+    text-decoration: none;
+}
+
+/*===============================================================
+						Search Tab
+================================================================*/
+.main-header {
+	background-color: #10C49D;
+	color:#fff;
+}
+
+.item-input {
+	border-bottom:none;
+	border-left: none;
+	border-right: none;
+}
+
+.your-location {
+	border-bottom: 3px solid #ccc;
+	margin-bottom: 10px;
+}
+
+input[type="text"] {
+	font-size:20px;
+	line-height: 34px;
+}
+
+input.ion-google-place[readonly] {
+	margin-left:15px;
+	width:100%;
+}
+
+.alert-message.item:last-child, .alert-message.item:last-child i {
+	color:#ff0000;
+	font-family:'SF-UI-Display-Semibold';
+	font-size:11pt;
+}
+
+.alert-icon {
+	font-size:.7em;
+}
+
+.meetup-places {
+	margin-bottom: 10px;
+}
+
+.item-toggle {
+	border:none;
+}
+
+ion-content.meeting-places {
+	margin-top:50px;
+}
+
+.meeting-places {
+	font-size:15pt;
+}
+
+.button-container {
+	padding-bottom: 50px;
+}
+
+.button.button-positive {
+	background-color:#10C49D;
+	border-color:#10C49D;
+	font-size: 20px;
+}
+
+.button.button-positive.activated {
+	background-color:#0c9577;
+	border-color:#0c9577;
+}
+
+.meet-me-there-btn {
+	font-family: 'SF-UI-Display-Semibold';
+}
+
+
+#pointA, #pointB {
+	margin-left: 7px;
+	padding-left: 7px;
+	width:95%;
+}
+/*===============================================================
+						Map Tab
+================================================================*/
+.coffee-transparant {
+	position: absolute;
+	top:5px;
+	left:0;
+	z-index: 200;
+	width:50px;
+	height:auto;
+}
+
+.loading-container .loading {
+	padding:10px 15px 15px 15px;
+	background-color: #10C49D;
+	opacity: .9;
+
+}
+
+.loading-icon {
+	width:75px;
+	height:auto;
+}
+
+.loading-text {
+	font-weight: 600;
+	margin-top:10px;
+}
+
+#map {
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	height:95vh;
+	/*height:50vh;*/
+	z-index: 100;
+}
+
+.pointB {
+	border:1px solid green;
+	margin-top:150px;
+}
+
+.field-test {
+	position: relative;
+	top:400px;
+}
+
+.padding-right {
+	padding-right: 0;
+}
+
+.eta-marker {
+	width:15px;
+	margin: 0 10px 0 0;
+}
+
+.eta {
+	float:right;
+}
+
+.nearby-locations {
+	font-size:17pt;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+
+.thumb-icon {
+	display: block;
+	float:left;
+	margin:-15px 0 0 -5px;
+}
+
+.marker-name {
+	text-decoration: none;
+	color:#000;
+	font-family: 'SF-UI-Display-Semibold';
+	display: block;;
+}
+
+.left {
+	float:left;
+}
+
+.more-info {
+	font-style: italic;
+}
+
+.more-info i {
+	font-size:20pt;
+	color:#10C49D;
+	display: block;
+} 
+
+.more-info i:active {
+	color:#10C49D;
+}
+
+.right {
+	margin:3px 0 0 5px;
+}
+
+.gmap-icon {
+	width:25px;
+	height:auto;
+	display: block;
+	float:left;
+}
+
+.more-info-active:active {
+	color:#10C49D;
+}
+
+.share-icon, .directions-icon {
+	display: block;
+	text-align: center;
+	font-size: 1.7em;
+}
+
+.icon-text {
+	text-align:center;
+}
+
+.glyphicon-star {
+	color:#E7731E;
+	letter-spacing: -3px;
+	font-size:1em;
+}
+
+.glyphicon-star-empty {
+	color:#cfcfcf;
+	letter-spacing: -3px;
+	font-size:1em;
+}
+
+.glyphicon-usd {
+	letter-spacing: -7px;
+	font-size:.8em;
+}
+
+.col.activated {
+	color:#10C49D;
+}
+
+.spinner-energized svg {
+	display: block;
+	margin: 25px auto;
+	width:50px;
+	height:auto;
+	fill: #10C49D;
+}
+
+.noresults-container {
+	height:50vh;
+}
+
+.sad-face {
+	width:100px;
+	height: auto;
+	display: block;
+	margin:20px auto;
+}
+
+.noresults {
+	font-size:17pt;
+	text-align: center;
+	margin:10px auto;
+	overflow: initial;
+    white-space: initial;
+    width:75%;
+}
+
+.window-name {
+	float:right;
+	margin:3px 0 0 10px;
+}
+/*===============================================================
+						Settings Tab
+================================================================*/
+.item {
+	font-family: 'SF-UI-Display-Regular';
+	font-size:15pt;
+}
+/*===============================================================
+						Meetups Tab
+================================================================*/
+.favorites {
+	border-top:none;
+}
+
+.meetups-backbtn {
+	margin:15px 0 0 10px;
+	color: #333;
+	background-color: #fff;
+	border: 2px solid #465568;
+	border-radius: 5px;
+}
+
+.meetups-backbtn:active {
+	background-color:#465568;
+	border: 2px solid #465568;
+	border-radius: 5px;
+	color:#fff;
+}
+
+.meeting-places:first-of-type {
+	border-top:none;
+	margin-top:40px;
+}
+
+.back-button {
+	border:none;
+	margin-left: 5px;
+}
+
+/*===============================================================
+						Favorites Tab
+================================================================*/
+.homeAddress-container {
+	border-top:none;
+	margin-top:50px;
+}
+
+.favorites-description {
+	padding:0 20px;
+	font-size:11pt;
+}
+
+.police-warning {
+	font-size:11pt;
+	padding:10px 10px;
+}
+
+/*===============================================================
+						Radius Range Tab
+================================================================*/
+.radius-range-container {
+	margin-top:75px;
+}
+
+.range-balance {
+	background:#10C49D;
+}
+
+.range-result {
+	text-align: center;
+	margin-top:15px;
+	font-size: 17pt;
+}
+
+/*===============================================================
+						Travel Mode Tab
+================================================================*/
+.travel-mode {
+	margin-top:63px;
+}
+
+.travelmode-radio {
+	font-weight: 300;
+}
+
+.item {
+	border-bottom:1px;
+	border-right: 0px;
+}
+
+.item:last-of-type {
+	border-bottom: 1px solid #ddd;
+}
+
+
+/* iOS 9 radio button issue <ion-radio-fix> directive*/
+.item-radio input:checked + .radio-content .item-content {
+/* style the item content when its checked */
+background: #f7f7f7; 
+
+}
+
+.item-radio input:checked + .radio-content .radio-icon {
+/* show the checkmark icon when its checked */
+visibility: visible;
+
+}
+
+/*===============================================================
+						Customize Midpoint Tab
+================================================================*/
+
+.custom-marker {
+	margin:15px auto;
+	display: block;
+}

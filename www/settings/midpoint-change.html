@@ -1,0 +1,27 @@
+<ion-view view-title="Customize Midpoint" hide-nav-bar="true">
+	<div class="bar bar-header">
+	  <span ui-sref="tabs.settings" class="button icon ion-ios-arrow-left back-button"></span>
+	  <div class="title">Adjust MeetPoint</div>
+	</div>
+	<ion-content class="radius-range-container">
+
+		<p class="favorites-description">
+			Choose whether you want to meet closer to you or your friends.
+		</p>
+
+		<div class="item range range-balanced">
+		  <span>Point A</span>
+			  <input type="range" 
+			  		name="radius" 
+			  		min="1" 
+			  		max="100" 
+			  		step="1" 
+			  		ng-model="midpointPercentage" 
+			  		ng-change="changedMidpoint(midpointPercentage)">
+		  <span>Point B</span>
+		</div>
+
+		<img class="custom-marker" ng-show="midpointPercentage == 50" src="common/img/marker.png">
+
+	</ion-content>
+</ion-view>

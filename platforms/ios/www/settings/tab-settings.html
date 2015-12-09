@@ -1,0 +1,51 @@
+<ion-nav-view name="Meet You There"></ion-nav-view>
+<ion-view view-title="Settings">
+  <ion-nav-bar class="main-header"></ion-nav-bar>
+  <ion-content>
+<!-- 	<div class="list">
+
+		<a href="#/tabs/favorites" class="item favorites">
+	    	Favorites
+	 	</a> 
+
+	</div> -->
+
+	<div class="list">
+
+	  <a href="#/tabs/meetups" class="item">
+	    Types of Places
+	  </a>	  
+
+	  <a href="#/tabs/change" class="item">
+	    Adjust MeetPoint
+	  </a>
+
+	  <a href="#/tabs/radius" class="item">
+	    Radius
+	  </a>	  
+
+	  <a href="#/tabs/travel" class="item">
+	    Travel Mode
+	  </a>
+
+	</div>
+
+	<div class="list">
+
+
+	  <div ng-click="rateApp()" class="item">
+	    Rate this App
+	  </div>	
+	    
+	  <div ng-click="giveFeedback()" class="item">
+	    Give Feedback
+	  </div>
+
+
+	<button class="button button-full button-positive" ng-show="homeAddress || workAddress" ng-click="saveChanges(homeAddress, workAddress)">
+	  	Save Changes
+	</button>
+	</div>
+
+  </ion-content>
+</ion-view>

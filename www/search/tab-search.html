@@ -1,0 +1,58 @@
+<ion-view view-title="Search">
+  <ion-nav-bar class="main-header"></ion-nav-bar>
+  <ion-content class="padding">
+          <div class="item item-divider">
+             Locations
+          </div>
+        <!-- Your Location -->
+          <div class="list list-inset" data-tap-disabled="true">
+            <!-- <ion-google-place placeholder="Your Location" ng-model="pointA" class="your-location"/> -->
+            <input ion-autocomplete id="pointB" class="ion-autocomplete" type="text" placeholder="{{userLocation}}"
+              ng-model="pointA"
+              item-value-key="description"
+              item-view-value-key="description"
+              items-method="getPlaces(query)"
+              items-method-value-key="results"
+              max-selected-items="1"
+              select-items-label="Select a location..."
+              />
+          </div>      
+
+          <!-- Second Location -->
+          <div class="list list-inset" data-tap-disabled="true">
+            <!-- <ion-google-place placeholder="Point B" ng-model="pointB" name="pointBinput" required/> -->
+            <input ion-autocomplete id="pointB" class="ion-autocomplete" type="text" readonly="readonly" placeholder="Point B"
+              ng-model="pointB"
+              item-value-key="description"
+              item-view-value-key="description"
+              items-method="getPlaces(query)"
+              items-method-value-key="results"
+              max-selected-items="1"
+              select-items-label="Select a location..."
+              />
+          </div>
+        
+          <div class="list card alert-message" ng-show="error">
+            <span class="item item-icon-left alert-message">
+              <i class="icon ion-alert alert-icon"></i>
+              {{alertMessage}}
+            </span>
+          </div>
+
+          <!--  Meeting Places -->
+          <div class="item item-divider meetup-places">
+            Meetup Places
+          </div>   
+
+        	<ion-toggle class="meeting-places" ng-repeat="place in places | orderBy: 'name'" ng-model="place.checked">
+          	{{place.name}}
+          </ion-toggle>          
+    
+          <div class="button-container">
+            <button class="button button-full button-positive meet-me-there-btn" ng-class="{{send}}" ng-click="getDirections(pointA, pointB)">
+              Meet You There
+            </button>
+          </div>
+  </ion-content>
+
+</ion-view>

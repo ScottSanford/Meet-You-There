@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="mmtApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
+    <title>Meet You There</title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/ion-autocomplete/dist/ion-autocomplete.css" rel="stylesheet">
+    <link href="lib/ion-drawer-vertical/src/ionic.contrib.drawer.vertical.css" rel="stylesheet">
+    <link href="lib/animate.css/animate.css" rel="stylesheet">
+    <link href="lib/map-icons/dist/css/map-icons.css" rel="stylesheet">
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="common/css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <!--
+      The nav bar that will be updated as we navigate between views.
+    -->
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+    <!--
+      The views will be rendered in the <ion-nav-view> directive below
+      Templates are in the /templates folder (but you could also
+      have templates inline in this html file if you'd like).
+    -->
+    <ion-nav-view></ion-nav-view>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsX8nXmIhbNOchioaaGj-1Wn9RH6L4S14&libraries=places"></script>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="cordova.js"></script>
+    <script src="lib/epoly/epoly.js"></script>
+    
+
+    <script src="app.js"></script>
+
+    <!-- Controllers -->
+    <script src="search/tab-search.js"></script>
+    <script src="map/tab-map.js"></script>
+    <script src="map/google-maps.js"></script>
+
+
+    <script src="settings/tab-settings.js"></script>
+    <script src="settings/email-composer.js"></script>
+    <script src="settings/app-rate.js"></script>
+    <script src="settings/meetups.js"></script>
+
+    <!-- Modules & Bower Installs -->
+    <script src="lib/ion-autocomplete/dist/ion-autocomplete.js"></script>
+    <script src="lib/ion-drawer-vertical/src/ionic.contrib.drawer.vertical.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="lib/ios9-uiwebview-patch/angular-ios9-uiwebview.patch.js"></script>
+    <script src="lib/angular-local-storage/dist/angular-local-storage.min.js"></script>
+   
+    <script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
+  </body>
+</html>
