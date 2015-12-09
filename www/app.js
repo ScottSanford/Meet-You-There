@@ -79,7 +79,7 @@ angular.module('mmtApp', [
       templateUrl: 'common/tabs.html'
     })
     .state('tabs.search', {
-      cache: false,
+      cache: true,
       url: '/search',
       views: {
         'tabs-search': {

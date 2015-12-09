@@ -2,11 +2,18 @@ angular.module('SearchController', [])
 
 .controller('SearchCtrl', function($scope, $state, $rootScope, $q, $location, localStorageService, Meetups, $cordovaGeolocation, GoogleMaps) {
 
+    checkLocalStorage();
+    // check to see if Local Storage has MeetupList
+    function checkLocalStorage() {
+        var meetups = localStorageService.get('meetupList');
+        if (meetups == null) {
+          localStorageService.set('meetupList', Meetups.types);
+        }   
+    }
     // reroute user to Map Tab
     $rootScope.clickMap = function() {
       $location.url('/tabs/map');
     } 
-
     displayUserAddress().then(function(address){
       $scope.userLocation = address;
     })
@@ -53,17 +60,16 @@ angular.module('SearchController', [])
 
 
     $scope.getPlaces = function(query) {
+      
       var service = new google.maps.places.AutocompleteService();
       service.getPlacePredictions({ input: query || 'ch' }, displaySuggestions);
-      
+
       if (query) {
         return {
-          results: places
+          results: places         
         }
       }
-      return {
-        results: displayUserAddress()
-      };
+
     };
 
     function fillInAddress() {
@@ -106,10 +112,13 @@ angular.module('SearchController', [])
     function displayOnlyActiveMeetups() {
 
       var meetupPlaces = localStorageService.get('meetupList');
-      
+      if (meetupPlaces) {
+        return getLSItems();
+      }
       if (meetupPlaces == null) {
         return initLocalStorageMeetupPlaces();
       }
+
       return getLSItems();
 
     }

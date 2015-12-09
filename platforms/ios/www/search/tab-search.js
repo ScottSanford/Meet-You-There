@@ -6,7 +6,6 @@ angular.module('SearchController', [])
     $rootScope.clickMap = function() {
       $location.url('/tabs/map');
     } 
-
     displayUserAddress().then(function(address){
       $scope.userLocation = address;
     })
@@ -53,17 +52,16 @@ angular.module('SearchController', [])
 
 
     $scope.getPlaces = function(query) {
+      
       var service = new google.maps.places.AutocompleteService();
       service.getPlacePredictions({ input: query || 'ch' }, displaySuggestions);
-      
+
       if (query) {
         return {
-          results: places
+          results: places         
         }
       }
-      return {
-        results: displayUserAddress()
-      };
+
     };
 
     function fillInAddress() {

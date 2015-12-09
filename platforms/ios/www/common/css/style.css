@@ -93,6 +93,7 @@ input[type="text"] {
 	line-height: 34px;
 }
 
+
 input.ion-google-place[readonly] {
 	margin-left:15px;
 	width:100%;
@@ -143,6 +144,9 @@ ion-content.meeting-places {
 	font-family: 'SF-UI-Display-Semibold';
 }
 
+#pointA::-webkit-input-placeholder {
+	color:#222;
+}
 
 #pointA, #pointB {
 	margin-left: 7px;
@@ -386,7 +390,7 @@ ion-content.meeting-places {
 
 .police-warning {
 	font-size:11pt;
-	padding:10px 10px;
+	padding:10px 0px 75px 10px;
 }
 
 /*===============================================================
