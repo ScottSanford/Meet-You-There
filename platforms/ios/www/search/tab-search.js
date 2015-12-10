@@ -142,6 +142,9 @@ angular.module('SearchController', [])
     // ngClick 'Meet Me There' Button
     $scope.getDirections = function(pointA, pointB) {
 
+        $scope.pointBError = false;
+        $scope.typeError = false;
+
         // obj for meetups on Search View
         var placesObj = $scope.places;
 
@@ -162,18 +165,36 @@ angular.module('SearchController', [])
           return place.id;
         });
 
-        // clear alert message when there is an option 
-        if (pointB.length > 0) {
-          $scope.alertMessage = '';
+        // first check if both PointB && meetups exist
+        if (pointB.length == 0 && $scope.places.length == 0) {
+
+          $scope.pointBError = true;
+          $scope.pointBErrorMessage = 'Please type in a Point B location.';
+
+          $scope.typeError = true;
+          $scope.typeErrorMessage = 'Please select a meetup place.';
+
+          return;
         }
 
-        // reroute user to map page with query string
+        // if one is false, see if pointB.length == true
         if (pointB.length == 0) {
-          // console.log($scope.place);
           $scope.pointBError = true;
           $scope.pointBErrorMessage = 'Please type in a Point B location.';
           return;
-        } else if (pointA === undefined || pointA.length === 0) {
+        } 
+        // else, see if user has a type of place checked from Settings
+        else if ($scope.places.length == 0) {
+
+          $scope.typeError = true;
+          $scope.typeErrorMessage = 'Please select a meetup place.';
+
+          return;
+
+        } 
+
+        // reroute user to map page with query string
+        if (pointA === undefined || pointA.length === 0) {
           $location.url('/tabs/map?pointA=undefined&pointB=' + pointB + '&typeID=' + typeID);
         } else {
           $location.url('/tabs/map?pointA=' + pointA + '&pointB=' + pointB + '&typeID=' + typeID); 

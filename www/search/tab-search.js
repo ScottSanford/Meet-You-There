@@ -152,13 +152,16 @@ angular.module('SearchController', [])
         function isPlaceSelected(place) {
           if (place.checked) {
             return place;
-          } else {
-            console.log('error, please select!');
-            $scope.typeError = true;
-            $scope.typeErrorMessage = 'Please select a meetup place.';
-            return;
           }
         }
+
+        // check if meetup places are all NOT checked
+        function isAllFalse(meetup) {
+            return !meetup.checked;
+        }
+
+        var allFalseMeetups = placesObj.every(isAllFalse);
+        console.log(allFalseMeetups);
 
         // taking place object, filtering, and just returning id
         var typeID = placesObj.filter(isPlaceSelected).map(function(place){
@@ -166,7 +169,10 @@ angular.module('SearchController', [])
         });
 
         // first check if both PointB && meetups exist
-        if (pointB.length == 0 && $scope.places.length == 0) {
+        if (
+          (pointB.length == 0 && $scope.places.length == 0) || 
+          (pointB.length == 0 && allFalseMeetups)
+           ) {
 
           $scope.pointBError = true;
           $scope.pointBErrorMessage = 'Please type in a Point B location.';
@@ -183,6 +189,13 @@ angular.module('SearchController', [])
           $scope.pointBErrorMessage = 'Please type in a Point B location.';
           return;
         } 
+        else if (allFalseMeetups) {
+          
+          $scope.typeError = true;
+          $scope.typeErrorMessage = 'Please select a meetup place.';
+
+          return;
+        }
         // else, see if user has a type of place checked from Settings
         else if ($scope.places.length == 0) {
 
