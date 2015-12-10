@@ -1,95 +1,133 @@
 angular.module('SettingsController', [])
 
-.controller('SettingsCtrl', function($scope, $state, $rootScope, $location, localStorageService, $cordovaEmailComposer, EmailComposer, $cordovaAppRate, $cordovaDialogs, Meetups, AppRate) {
+.controller('SettingsCtrl', function(
+  $scope, $rootScope, $state, $location, 
+  localStorageService,  EmailComposer, Meetups, AppRate,
+  $cordovaEmailComposer, $cordovaAppRate, $cordovaDialogs) {
 
   // reroute user to Map Tab
-  $rootScope.clickMap = function() {
-    $location.url('/tabs/map');
-  } 
+  $scope.$on('$ionicView.afterEnter', function(){
+
+    $rootScope.clickMap = function() {
+
+      var lsUrl = localStorageService.get('mapUrl');
+      console.log('settings ==> ', lsUrl);
+
+      if (lsUrl === '#/tabs/settings' || lsUrl === '#/tabs/search') {
+          console.log('Local Stroage change on me!! :( ');
+          $location.url('/tabs/map');
+          return;
+      }
+
+      if (lsUrl) {
+
+        var url = lsUrl.substring(2);
+        $location.url(url);
+
+      } else {
+
+        $location.url('/tabs/map');
+      }
+    }  
+  });
+
+  // **** NEW FEATURE TO BE ADDED LATER**** ////////////////////////////
   // Save Work and Home Address
 
-  var home = localStorageService.get('home');
-  var work = localStorageService.get('work');
+  // var home = localStorageService.get('home');
+  // var work = localStorageService.get('work');
 
-  if (home == undefined) {
-    $scope.userHomeAddress = 'Enter your home address';
-  } 
+  // if (home == undefined) {
+  //   $scope.userHomeAddress = 'Enter your home address';
+  // } 
 
-  if (work == undefined) {
-    $scope.userWorkAddress = 'Enter your work address'; 
-  } else {
+  // if (work == undefined) {
+  //   $scope.userWorkAddress = 'Enter your work address'; 
+  // } else {
 
-    var homeAdd = localStorageService.get('home').formatted_address;
-    var workAdd = localStorageService.get('work').formatted_address;
+  //   var homeAdd = localStorageService.get('home').formatted_address;
+  //   var workAdd = localStorageService.get('work').formatted_address;
 
-    $scope.userHomeAddress = homeAdd;
-    $scope.userWorkAddress = workAdd;
+  //   $scope.userHomeAddress = homeAdd;
+  //   $scope.userWorkAddress = workAdd;
 
-  }
+  // }
 
-  $scope.saveChanges = function(homeAddress, workAddress) {
-    console.log("Home Address :: " , homeAddress);
-    console.log("Work Address :: " , workAddress);
-    localStorageService.set('home', homeAddress);
-    localStorageService.set('work', workAddress);
-  }
+  // $scope.saveChanges = function(homeAddress, workAddress) {
+  //   console.log("Home Address :: " , homeAddress);
+  //   console.log("Work Address :: " , workAddress);
+  //   localStorageService.set('home', homeAddress);
+  //   localStorageService.set('work', workAddress);
+  // }
 
 
   // Meetup Logic Starts here
   // Meetup View
 
   function initMeetupList() {
-    var lsKeys = localStorageService.deriveKey();
-    var meetupPlaces = localStorageService.get('meetupList');
-    for (var i=0; i< lsKeys.length; i++) {
-      if (meetupPlaces) {
-        var lsList = localStorageService.get('meetupList');
-        return lsList;
-      } else {
-        localStorageService.set('meetupList', Meetups.types);
-        return Meetups.types;
-      }
-    }    
-  }
+
+      var lsKeys = localStorageService.deriveKey();
+      var meetupPlaces = localStorageService.get('meetupList');
+
+      for (var i=0; i< lsKeys.length; i++) {
+
+        if (meetupPlaces) {
+
+          var lsList = localStorageService.get('meetupList');
+          return lsList;
+
+        } else {
+
+          localStorageService.set('meetupList', Meetups.types);
+          return Meetups.types;
+
+        }
+      }    
+  };
 
   $scope.meetups = initMeetupList();
 
   $scope.updateLocalStorage = function(meetup) {
+
     var meetupList = localStorageService.get('meetupList');
+
     meetupList.forEach(function(m){
       if (m.id === meetup.id) {
         m.checked = meetup.checked;
       }
     })
+
     localStorageService.set('meetupList', meetupList);
-  }
+
+  };
 
 /////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// TRAVEL MODE VIEW /////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
   $scope.travelModes = [
-    {
-      text: 'Driving', 
-      value: google.maps.TravelMode.DRIVING,
-      appleValue: 'd'
-    },
-    {
-      text: 'Transit', 
-      value: google.maps.TravelMode.TRANSIT,
-      appleValue: 'r'
-    },    
-    {
-      text: 'Walking', 
-      value: google.maps.TravelMode.WALKING,
-      appleValue: 'w'
-    },
-    {
-      text: 'Bicycling', 
-      value: google.maps.TravelMode.BICYCLING, 
-      appleValue: 'd'
-    }
+      {
+        text: 'Driving', 
+        value: google.maps.TravelMode.DRIVING,
+        appleValue: 'd'
+      },
+      {
+        text: 'Transit', 
+        value: google.maps.TravelMode.TRANSIT,
+        appleValue: 'r'
+      },    
+      {
+        text: 'Walking', 
+        value: google.maps.TravelMode.WALKING,
+        appleValue: 'w'
+      },
+      {
+        text: 'Bicycling', 
+        value: google.maps.TravelMode.BICYCLING, 
+        appleValue: 'd'
+      }
   ];
+
   var travelLS = localStorageService.get('travelMode');
   $scope.radio = {
     checked: travelLS !== null ? travelLS : google.maps.TravelMode.DRIVING 
@@ -105,6 +143,7 @@ angular.module('SettingsController', [])
   /////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////// RADIUS RANGE  VIEW ///////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////
+
   $scope.changedRadiusRange = function(range) {
 
     localStorageService.set('radiusRange', range);
@@ -177,6 +216,8 @@ angular.module('SettingsController', [])
 
 
 })
+
+// fix for Travel Mode ion radio buttons
 .directive('ionRadioFix', function() {
   return {
     restrict: 'E',
@@ -223,8 +264,4 @@ angular.module('SettingsController', [])
     }
   };
 });
-
-
-
-
 

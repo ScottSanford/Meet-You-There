@@ -5,7 +5,7 @@ angular.module('AppRateService', [])
   var prefs = {
      language: 'en',
      appName: 'Meet Me There',
-     iosURL: '1061762897', 
+     iosURL: 'com.mediafly.meet-you-there', 
      openStoreInApp: true
   } 
 

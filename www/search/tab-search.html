@@ -32,10 +32,10 @@
               />
           </div>
         
-          <div class="list card alert-message" ng-show="error">
+          <div class="list card alert-message" ng-show="pointBError">
             <span class="item item-icon-left alert-message">
               <i class="icon ion-alert alert-icon"></i>
-              {{alertMessage}}
+              {{pointBErrorMessage}}
             </span>
           </div>
 
@@ -46,7 +46,14 @@
 
         	<ion-toggle class="meeting-places" ng-repeat="place in places | orderBy: 'name'" ng-model="place.checked">
           	{{place.name}}
-          </ion-toggle>          
+          </ion-toggle>   
+
+          <div class="list card alert-message" ng-show="typeError">
+            <span class="item item-icon-left alert-message">
+              <i class="icon ion-alert alert-icon"></i>
+              {{typeErrorMessage}}
+            </span>
+          </div>       
     
           <div class="button-container">
             <button class="button button-full button-positive meet-me-there-btn" ng-class="{{send}}" ng-click="getDirections(pointA, pointB)">

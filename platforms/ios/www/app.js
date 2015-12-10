@@ -58,12 +58,6 @@ angular.module('mmtApp', [
   });
 })
 
-.filter('capitalize', function() {
-    return function(input) {
-      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
-    }
-})
-
 .config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, $cordovaAppRateProvider) {
 
   uiGmapGoogleMapApiProvider.configure({
@@ -76,10 +70,11 @@ angular.module('mmtApp', [
     .state('tabs', {
       url:'/tabs',
       abstract: true,
+      cache: false,
       templateUrl: 'common/tabs.html'
     })
     .state('tabs.search', {
-      cache: false,
+      cache: true,
       url: '/search',
       views: {
         'tabs-search': {
@@ -97,21 +92,22 @@ angular.module('mmtApp', [
             controller: 'GoogleMapCtrl'
           }
         }
-      })
+    })
+    .state('tabs.settings', {
+      url: '/settings',
+      cache: true,
+      views: {
+        'tabs-settings': {
+          templateUrl: 'settings/tab-settings.html',
+          controller: 'SettingsCtrl'
+        }
+      }
+    })
     .state('tabs.meetups', {
       url: '/meetups',
       views: {
         'tabs-settings': {
           templateUrl: 'settings/meetups.html', 
-          controller: 'SettingsCtrl'
-        }
-      }
-    })    
-    .state('tabs.travel', {
-      url: '/travel',
-      views: {
-        'tabs-settings': {
-          templateUrl: 'settings/travel-mode.html', 
           controller: 'SettingsCtrl'
         }
       }
@@ -134,6 +130,15 @@ angular.module('mmtApp', [
         }
       }
     })
+    .state('tabs.travel', {
+      url: '/travel',
+      views: {
+        'tabs-settings': {
+          templateUrl: 'settings/travel-mode.html', 
+          controller: 'SettingsCtrl'
+        }
+      }
+    })    
     .state('tabs.favorites', {
       url: '/favorites',
       views: {
@@ -142,21 +147,10 @@ angular.module('mmtApp', [
           controller: 'SettingsCtrl'
         }
       }
-    })
-    .state('tabs.settings', {
-      url: '/settings',
-      cache: false,
-      views: {
-        'tabs-settings': {
-          templateUrl: 'settings/tab-settings.html',
-          controller: 'SettingsCtrl'
-        }
-      }
     });
 
   // if none of the above states are matched, use this as the fallback
   // default to map view to initiate GeoLocation
   $urlRouterProvider.otherwise('/tabs/map');
-
 
 });

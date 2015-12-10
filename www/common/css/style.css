@@ -7,7 +7,6 @@ map {
   height: 100%;
 }
 
-
 @font-face {
 	font-family:'SF-UI-Display-Regular';
 	src:url('../fonts/SF-UI-Display-Regular.otf');
@@ -142,6 +141,10 @@ ion-content.meeting-places {
 
 .meet-me-there-btn {
 	font-family: 'SF-UI-Display-Semibold';
+}
+
+.button.icon.ion-chevron-left {
+	background-color: #fff;
 }
 
 #pointA::-webkit-input-placeholder {
@@ -372,7 +375,6 @@ ion-content.meeting-places {
 
 .back-button {
 	border:none;
-	margin-left: 5px;
 }
 
 /*===============================================================
@@ -390,7 +392,7 @@ ion-content.meeting-places {
 
 .police-warning {
 	font-size:11pt;
-	padding:10px 0px 75px 10px;
+	padding:10px 0px 110px 10px;
 }
 
 /*===============================================================
