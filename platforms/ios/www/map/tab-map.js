@@ -26,8 +26,6 @@ angular.module('MapController', [])
           initialize(userLocation);
       });
 
-
-
       function getUserLocation() {
 
         // add loading icon
@@ -36,6 +34,8 @@ angular.module('MapController', [])
         });
 
         var deferred = $q.defer();
+
+
           $ionicPlatform.ready(function(){
               $cordovaGeolocation
                 .getCurrentPosition()
@@ -50,9 +50,22 @@ angular.module('MapController', [])
 
                   deferred.resolve(userLocation);
 
+              }, function(){
+                  // if user does not give App access to GeoLocation
+                  userLocation = {
+                       lat: 33.8090, 
+                       lng: -117.9190
+                  }
+
+                  localStorageService.set('userLocation', userLocation);
+
+                  deferred.resolve(userLocation);
+
+
               });
           });
         
+        $ionicLoading.hide();
         return deferred.promise;
 
       };
@@ -72,6 +85,8 @@ angular.module('MapController', [])
 
         // show basic map
         if (!$stateParams.pointB) {
+          console.log(userLocation);
+          console.log('inside init');
           GoogleMaps.initGoogleMap(userLocation);
           $ionicLoading.hide();     
         }

@@ -152,7 +152,7 @@ angular.module('SettingsController', [])
 
   var rRange = localStorageService.get('radiusRange');
 
-  $scope.radiusRange = rRange !== null ? rRange : 800;
+  $scope.radiusRange = rRange !== null ? rRange : 1600;
 
 /////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// CUSTOMIZE MIDPOINT VIEW //////////////////////////

@@ -13,13 +13,12 @@
 			  		name="radius" 
 			  		min="160" 
 			  		max="16000" 
-			  		
 			  		ng-model="radiusRange" 
 			  		ng-change="changedRadiusRange(radiusRange)">
 		  <span>10 mi</span>
 		</div>
 
-		<div class="range-result">{{radiusRange/1600 || '.5' | number:1}} miles</div>
+		<div class="range-result">{{radiusRange/1600 || '1' | number:1}} miles</div>
 
 
 	</ion-content>
