@@ -1,6 +1,9 @@
 angular.module('SearchController', [])
 
-.controller('SearchCtrl', function($scope, $state, $rootScope, $q, $location, localStorageService, Meetups, $cordovaGeolocation, GoogleMaps) {
+.controller('SearchCtrl', function(
+  $scope, $state, $rootScope, $q, $location, 
+  localStorageService, GoogleMaps, Meetups, 
+  $cordovaGeolocation) {
 
 
     // reroute user to Map Tab
@@ -28,7 +31,6 @@ angular.module('SearchController', [])
         }
       }  
     });
-
 
     // check to see if Local Storage has MeetupList
     checkLocalStorage();
@@ -161,7 +163,6 @@ angular.module('SearchController', [])
         }
 
         var allFalseMeetups = placesObj.every(isAllFalse);
-        console.log(allFalseMeetups);
 
         // taking place object, filtering, and just returning id
         var typeID = placesObj.filter(isPlaceSelected).map(function(place){
@@ -188,14 +189,16 @@ angular.module('SearchController', [])
           $scope.pointBError = true;
           $scope.pointBErrorMessage = 'Please type in a Point B location.';
           return;
-        } 
+        }
+
         else if (allFalseMeetups) {
-          
+
           $scope.typeError = true;
           $scope.typeErrorMessage = 'Please select a meetup place.';
 
           return;
         }
+
         // else, see if user has a type of place checked from Settings
         else if ($scope.places.length == 0) {
 
