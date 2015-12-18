@@ -23,7 +23,7 @@
             <!-- <ion-google-place placeholder="Point B" ng-model="pointB" name="pointBinput" required/> -->
             <input ion-autocomplete id="pointB" class="ion-autocomplete" type="text" readonly="readonly" placeholder="Point B"
               ng-model="pointB"
-              item-value-key="description"
+              item-value-key="place_id"
               item-view-value-key="description"
               items-method="getPlaces(query)"
               items-method-value-key="results"
@@ -61,6 +61,8 @@
               Meet You There
             </button>
           </div>
+          <!-- testing -->
+          <div id="testmap"></div>
   </ion-content>
 
 </ion-view>

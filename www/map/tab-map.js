@@ -85,10 +85,10 @@ angular.module('MapController', [])
 
         // show basic map
         if (!$stateParams.pointB) {
-          console.log(userLocation);
-          console.log('inside init');
           GoogleMaps.initGoogleMap(userLocation);
           $ionicLoading.hide();     
+
+          // // save map to local storage for search view
         }
 
         if ($stateParams.pointB) {
@@ -101,12 +101,19 @@ angular.module('MapController', [])
 
           GoogleMaps.calcRoute(pLine, userLocation, googleMap.map, pointA, pointB, typeID).then(function(results){
 
+
             var mLocation = results[0].mLocation;
 
             getETA(mLocation); 
             $scope.results = results;
 
             results.forEach(function(value,i){
+              if (value.rating == undefined) {
+                value.rating = 0;
+              }
+              if (value.price_level == undefined) {
+                value.price_level = 0;
+              }
               var thumbIcon = 'thumbIcon';
               value[thumbIcon] = GoogleMaps.customMarker(value).thumb;
             });
@@ -121,6 +128,23 @@ angular.module('MapController', [])
           $ionicLoading.hide();
                 
         }
+
+        $scope.predicate  = 'rating';
+        $scope.reverse    = true;
+        $scope.ratingArrow      = true;
+        $scope.priceArrow = true;
+
+        $scope.order = function(predicate) {
+          $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+
+          if (predicate == 'rating') {
+            $scope.ratingArrow = ($scope.predicate === predicate) ? !$scope.ratingArrow : false;    
+          } else {
+            $scope.priceArrow = ($scope.predicate === predicate) ? !$scope.priceArrow : false;   
+          }
+
+          $scope.predicate = predicate;
+        };
 
         function getETA (midpoint) {
 
