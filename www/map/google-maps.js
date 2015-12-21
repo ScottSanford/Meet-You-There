@@ -73,8 +73,18 @@ angular.module('GoogleMapsService', [])
 
           var deferred = $q.defer();
           var directionsService = new google.maps.DirectionsService();
-          var start = pointA !== 'undefined' ? pointA : userLocation;
-          var end = pointB;
+
+          if (pointA !== 'undefined') {
+            var start = {
+                placeId: pointA
+              }                       
+          } else {
+            var start = userLocation;
+          }
+          
+          var end = {
+            placeId: pointB
+          }
 
           var driving = google.maps.DirectionsTravelMode.DRIVING
           var travelLocalStorage = localStorageService.get('travelMode');

@@ -15,7 +15,20 @@
 
           <!-- Happy, found search results -->
           <div ng-show="results.length > 0" class="item item-divider nearby-locations">Nearby Locations - {{results.length}} results     <p><img class="eta-marker" src="common/img/marker.png">ETA (Point A to MeetPoint) : {{eta}}<p></div>
-            <div ng-show="results.length > 0" class="item padding-right" ng-repeat="result in results |  orderBy:'name'">
+            <div class="item item-divider sorting">
+              <div class="sort-title">Sort by:</div>
+              <div class="sort">
+                <button class="button" ng-class="{'activeBtn' : rateActive}" ng-click="order('rating')">
+                   <i class="icon ion-star button-icons"></i>
+                   <i class="icon button-icons" ng-class="{'ion-arrow-up-c' : ratingArrow, 'ion-arrow-down-c' : !ratingArrow}"></i>
+                </button>
+                <button class="button" ng-class="{'activeBtn' : priceActive}" ng-click="order('price_level')">
+                  <i class="icon ion-social-usd button-icons"></i>
+                  <i class="icon ion-arrow-up-c button-icons" ng-class="{'ion-arrow-up-c' : priceArrow, 'ion-arrow-down-c' : !priceArrow}"></i>
+                </button>
+              </div>
+            </div>
+            <div ng-show="results.length > 0" class="item padding-right" ng-repeat="result in results | orderBy:predicate:reverse">
               <div class="row">
                 <div class="col col-50">
                   <div class="ellipsis more-info-active" ng-click="getMoreInfo(result.place_id)">{{result.name}}</div> 
@@ -29,7 +42,7 @@
                       state-on="'glyphicon-usd'" 
                       state-off="'null'">
                   </rating>
-  
+                  <p class="closed" ng-show="{{!result.opening_hours.open_now}}">Closed Now</p>
                   <div>
                     <img class="thumb-icon" ng-src="{{result.thumbIcon}}">
                   </div>

@@ -11,10 +11,8 @@ angular.module('SearchController', [])
       $rootScope.clickMap = function() {
 
         var lsUrl = localStorageService.get('mapUrl');
-        console.log('search ==> ', lsUrl);
         
         if (lsUrl === '#/tabs/search' || lsUrl === '#/tabs/settings') {
-          console.log('Local Stroage change on me!! :( ');
           $location.url('/tabs/map');
           return;
         }
@@ -140,9 +138,26 @@ angular.module('SearchController', [])
       
     });
 
+    var pointA;
+    var pointB;
 
     // ngClick 'Meet Me There' Button
     $scope.getDirections = function(pointA, pointB) {
+
+        locationErrorHandling(pointB).then(function(typeID){
+          // reroute user to map page with query string
+          if (pointA === undefined || pointA.length === 0) {
+            $location.url('/tabs/map?pointA=undefined&pointB=' + pointB + '&typeID=' + typeID);
+          } else {
+            $location.url('/tabs/map?pointA=' + pointA + '&pointB=' + pointB + '&typeID=' + typeID); 
+          }    
+        });
+          
+    };
+
+    function locationErrorHandling(pointB) {
+
+        var deferred = $q.defer();
 
         $scope.pointBError = false;
         $scope.typeError = false;
@@ -162,12 +177,18 @@ angular.module('SearchController', [])
             return !meetup.checked;
         }
 
-        var allFalseMeetups = placesObj.every(isAllFalse);
-
+        var typeArr = [];
         // taking place object, filtering, and just returning id
         var typeID = placesObj.filter(isPlaceSelected).map(function(place){
-          return place.id;
+          
+          typeArr.push(place.id);
+          
         });
+          
+        deferred.resolve(typeArr);
+
+
+        var allFalseMeetups = placesObj.every(isAllFalse);
 
         // first check if both PointB && meetups exist
         if (
@@ -208,14 +229,8 @@ angular.module('SearchController', [])
           return;
 
         } 
+      return deferred.promise;
+    }
 
-        // reroute user to map page with query string
-        if (pointA === undefined || pointA.length === 0) {
-          $location.url('/tabs/map?pointA=undefined&pointB=' + pointB + '&typeID=' + typeID);
-        } else {
-          $location.url('/tabs/map?pointA=' + pointA + '&pointB=' + pointB + '&typeID=' + typeID); 
-        } 
-          
-    };
 
 });

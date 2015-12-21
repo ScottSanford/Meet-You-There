@@ -9,7 +9,7 @@
             <!-- <ion-google-place placeholder="Your Location" ng-model="pointA" class="your-location"/> -->
             <input ion-autocomplete id="pointA" class="ion-autocomplete" type="text" placeholder="{{userLocation}}"
               ng-model="pointA"
-              item-value-key="description"
+              item-value-key="place_id"
               item-view-value-key="description"
               items-method="getPlaces(query)"
               items-method-value-key="results"

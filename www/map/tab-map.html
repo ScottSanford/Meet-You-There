@@ -16,15 +16,15 @@
           <!-- Happy, found search results -->
           <div ng-show="results.length > 0" class="item item-divider nearby-locations">Nearby Locations - {{results.length}} results     <p><img class="eta-marker" src="common/img/marker.png">ETA (Point A to MeetPoint) : {{eta}}<p></div>
             <div class="item item-divider sorting">
-              <span class="sort-title">Sort by:</span>
+              <div class="sort-title">Sort by:</div>
               <div class="sort">
-                <button class="button button-clear" ng-click="order('rating')">
-                   <span class="icon ion-star"></span>
-                   <span class="icon" ng-class="{'ion-arrow-up-c' : ratingArrow, 'ion-arrow-down-c' : !ratingArrow}"></span>
+                <button class="button" ng-class="{'activeBtn' : rateActive}" ng-click="order('rating')">
+                   <i class="icon ion-star button-icons"></i>
+                   <i class="icon button-icons" ng-class="{'ion-arrow-up-c' : ratingArrow, 'ion-arrow-down-c' : !ratingArrow}"></i>
                 </button>
-                <button class="button button-clear" ng-click="order('price_level')">
-                  <span class="icon ion-social-usd"></span>
-                  <span class="icon ion-arrow-up-c" ng-class="{'ion-arrow-up-c' : priceArrow, 'ion-arrow-down-c' : !priceArrow}"></span>
+                <button class="button" ng-class="{'activeBtn' : priceActive}" ng-click="order('price_level')">
+                  <i class="icon ion-social-usd button-icons"></i>
+                  <i class="icon ion-arrow-up-c button-icons" ng-class="{'ion-arrow-up-c' : priceArrow, 'ion-arrow-down-c' : !priceArrow}"></i>
                 </button>
               </div>
             </div>

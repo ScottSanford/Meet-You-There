@@ -11,7 +11,6 @@ angular.module('SettingsController', [])
     $rootScope.clickMap = function() {
 
       var lsUrl = localStorageService.get('mapUrl');
-      console.log('settings ==> ', lsUrl);
 
       if (lsUrl === '#/tabs/settings' || lsUrl === '#/tabs/search') {
           console.log('Local Stroage change on me!! :( ');

@@ -26,7 +26,7 @@ body {
 	font-family: 'SF-UI-Display-Regular';
 }
 
-ng:cloak], 
+[ng:cloak], 
 [ng-cloak], 
 [data-ng-cloak], 
 [x-ng-cloak], 
@@ -162,8 +162,6 @@ ion-content.meeting-places {
 /*===============================================================
 						Map Tab
 ================================================================*/
-
-
 .coffee-transparant {
 	position: absolute;
 	top:5px;
@@ -211,6 +209,10 @@ ion-content.meeting-places {
 	top:400px;
 }
 
+.item.sorting {
+	border-top:1px solid #ccc;
+}
+
 .padding-right {
 	padding-right: 0;
 }
@@ -224,6 +226,46 @@ ion-content.meeting-places {
 	float:right;
 }
 
+.sort button {
+	height:30px;
+}
+
+.sort .button {
+	background-color:#10C49D;
+	color:#fff;
+	padding:0;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	border-bottom:3px solid;
+	border-radius: 4px;
+	border-color:#0c9577;
+	min-height: 40px;
+	min-width: 45px;
+}
+
+.button i:before {
+	font-size:16px !important;
+}
+
+.button.activeBtn {
+	background-color: #0c9577;
+}
+
+.sort-title {
+	font-style: italic;
+	margin-top:-5px;
+	font-size:13pt;
+}
+
+.sort {
+	margin-top: 5px;
+}
+
+.sort button:last-of-type {
+	margin-left:15px;
+}
+
 .nearby-locations {
 	font-size:17pt;
 }
@@ -233,6 +275,10 @@ ion-content.meeting-places {
     overflow: hidden;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
+}
+
+p.closed {
+	color:#ff0000;
 }
 
 .thumb-icon {

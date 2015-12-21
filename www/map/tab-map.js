@@ -135,15 +135,23 @@ angular.module('MapController', [])
         $scope.priceArrow = true;
 
         $scope.order = function(predicate) {
+
+          $scope.rateActive = false;
+          $scope.priceActive = false;
+
           $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
 
           if (predicate == 'rating') {
-            $scope.ratingArrow = ($scope.predicate === predicate) ? !$scope.ratingArrow : false;    
+            $scope.ratingArrow = ($scope.predicate === predicate) ? !$scope.ratingArrow : false;
+            $scope.rateActive = true;  
+          
           } else {
-            $scope.priceArrow = ($scope.predicate === predicate) ? !$scope.priceArrow : false;   
+            $scope.priceArrow = ($scope.predicate === predicate) ? !$scope.priceArrow : false; 
+            $scope.priceActive = true;
           }
 
           $scope.predicate = predicate;
+
         };
 
         function getETA (midpoint) {
